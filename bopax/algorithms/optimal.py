@@ -35,6 +35,10 @@ class OptimalPacker(BasePacker):
         print(f"Finding optimal packing for {len(self.boxes)} boxes...")
         print(f"Available containers: {[label for label, _ in self.container_types]}\n")
 
+        # Handle empty boxes case
+        if not self.boxes:
+            return self._format_result([])
+
         sorted_boxes = sorted(self.boxes, key=lambda b: b.volume(), reverse=True)
 
         best_result = None
