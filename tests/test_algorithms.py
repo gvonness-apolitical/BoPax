@@ -1,6 +1,9 @@
 """Tests for BoPax packing algorithms."""
+import os
+
 import pytest
 from bopax.models import Box
+from bopax.loaders import load_boxes_from_csv, load_containers_from_csv
 from bopax.algorithms import (
     BasePacker,
     ExhaustivePacker,
@@ -265,6 +268,29 @@ class TestPackerComparison:
         for packer in packers:
             result = packer.pack()
             assert 0 <= result['overall_utilization'] <= 1.0
+
+
+class TestRealWorldFixtures:
+    """Tests for real-world CSV fixtures."""
+
+    def test_packrift_ecommerce_carton_fixture(self):
+        """Test packing the Packrift ecommerce carton CSV fixture."""
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        boxes = load_boxes_from_csv(os.path.join(root_dir, 'examples', 'packrift_boxes.csv'))
+        containers = load_containers_from_csv(os.path.join(root_dir, 'examples', 'packrift_containers.csv'))
+
+        result = HybridPacker(boxes, containers).pack()
+
+        assert result is not None
+        packed_boxes = sum(len(c['boxes']) for c in result['containers'])
+        assert packed_boxes == len(boxes)
+        assert result['total_containers'] == 7
+        assert result['container_counts'] == {
+            'Packrift 20x14x6 carton': 4,
+            'Packrift 24x10x8 carton': 1,
+            'Packrift 16x8x4 carton': 1,
+            'Packrift 10x6x6 carton': 1,
+        }
 
 
 class TestNoOverlaps:
