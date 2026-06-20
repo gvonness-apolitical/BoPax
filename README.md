@@ -15,7 +15,7 @@ A Python library for solving the 3D bin packing problem - efficiently packing it
 ### From Source
 
 ```bash
-git clone https://github.com/gvonness-apolitical/BoPax.git
+git clone https://github.com/gvonnessi/BoPax.git
 cd BoPax
 pip install -e .
 ```

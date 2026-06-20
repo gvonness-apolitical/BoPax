@@ -10,7 +10,7 @@ setup(
     description="3D Bin Packing Optimization Library",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gvonness-apolitical/BoPax",
+    url="https://github.com/gvonnessi/BoPax",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
