@@ -15,8 +15,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/gvonness-apolitical/BoPax"
-Repository = "https://github.com/gvonness-apolitical/BoPax"
+Homepage = "https://github.com/gvonnessi/BoPax"
+Repository = "https://github.com/gvonnessi/BoPax"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0.0", "pytest-cov"]
